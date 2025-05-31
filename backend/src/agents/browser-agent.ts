@@ -39,7 +39,9 @@ export class BrowserAgent implements Agent {
   public async initialize(): Promise<void> {
     this.browser = await puppeteer.launch({
       headless: 'new',
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      timeout: 60000,
+      ignoreDefaultArgs: ['--disable-extensions']
     });
     this.events.emit('status', { status: 'initialized' });
   }

@@ -2,7 +2,7 @@ import express from 'express';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 import { AgentOrchestrator } from './core/orchestrator';
-import { BrowserAgent } from './agents/browser-agent';
+import { ResearchAgent } from './agents/research-agent';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -20,8 +20,9 @@ const orchestrator = new AgentOrchestrator();
 
 // Initialize agents
 async function initializeAgents() {
-  const browserAgent = new BrowserAgent();
-  await orchestrator.registerAgent(browserAgent);
+  const researchAgent = new ResearchAgent();
+  await orchestrator.registerAgent(researchAgent);
+  console.log('Research agent initialized successfully');
 }
 
 // Setup WebSocket event handlers
@@ -80,6 +81,23 @@ io.on('connection', (socket) => {
 app.get('/agents', (req, res) => {
   const agents = orchestrator.getAllAgents();
   res.json({ agents });
+});
+
+// 添加一个测试端点
+app.post('/test/summarize', express.json(), async (req, res) => {
+  try {
+    const result = await orchestrator.executeTask(
+      'research',
+      'summarize',
+      { text: req.body.text, maxLength: req.body.maxLength }
+    );
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({ 
+      success: false, 
+      error: (error as Error).message 
+    });
+  }
 });
 
 // Start the server
