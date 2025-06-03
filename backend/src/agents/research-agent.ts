@@ -32,7 +32,6 @@ export class ResearchAgent implements Agent {
   }
 
   public async initialize(): Promise<void> {
-    // 简单的初始化，不需要外部依赖
     this.events.emit('status', { status: 'initialized' });
   }
 
@@ -51,7 +50,6 @@ export class ResearchAgent implements Agent {
     try {
       const { text, maxLength = 100 } = params as { text: string; maxLength?: number };
       
-      // 简单的摘要实现：截取前N个字符
       const summary = text.length > maxLength 
         ? text.substring(0, maxLength) + '...'
         : text;
