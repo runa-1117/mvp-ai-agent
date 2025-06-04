@@ -1,30 +1,28 @@
 # Mini AI Agent
 
-一个简单的AI代理程序，可以执行基本的对话、等待和网络搜索功能。
+这是一个简单的AI代理程序，可以执行基本的对话、等待和网络搜索功能。
 
 ## Features
 
-- 支持基本的对话输出（SAY 命令）
-- 可控的等待时间（WAIT 命令）
-- 实时网络搜索功能（SEARCH 命令）
-- 支持中英文搜索
+目前实现了三个基础功能：
+- 说话：能回应我们
+- 等待：可以控制响应的时间
+- 搜索：能帮我们在网上找资料（支持中英文）
 
 ## 安装步骤
 
-1. 确保你的电脑已安装 Python 3.x
-2. 安装必要的包：
-   ```bash
-   pip3 install duckduckgo-search
-   ```
+需要：
+- Python 3.x
+- 安装包：`duckduckgo-search`
 
-### Installation
+直接运行：
+```bash
+# 安装依赖
+pip3 install duckduckgo-search
 
-1. 克隆此项目到本地
-2. 在终端中进入项目目录
-3. 运行主程序：
-   ```bash
-   python3 main.py
-   ```
+# 运行程序
+python3 main.py
+```
 
 ## Example
 
@@ -43,12 +41,6 @@ WAIT 1
 SAY "搜索演示完成！现在我可以帮您搜索任何感兴趣的话题"
 '''
 ```
-
-## 可用命令
-
-1. `SAY "文本"` - 输出指定文本
-2. `WAIT 秒数` - 等待指定的秒数
-3. `SEARCH "关键词"` - 搜索指定的关键词并返回结果
 
 ## 自定义Script
 
